@@ -1,0 +1,21 @@
+# Local Databricks CLI / sync metadata (may contain workspace host + user paths)
+.databricks/
+
+# Secrets and local config
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+.databrickscfg
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

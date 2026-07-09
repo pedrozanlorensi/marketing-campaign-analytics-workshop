@@ -1,0 +1,13 @@
+command: [
+  "streamlit",
+  "run",
+  "app.py"
+]
+
+env:
+  - name: STREAMLIT_BROWSER_GATHER_USAGE_STATS
+    value: "false"
+  # Bound at deploy time to the Supervisor Agent serving endpoint via the
+  # app resource named "agent-endpoint" (see notebook 0_DeployChatApp).
+  - name: SERVING_ENDPOINT
+    valueFrom: agent-endpoint
