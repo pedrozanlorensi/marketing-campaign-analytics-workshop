@@ -98,10 +98,10 @@ notebook widgets.
 | 3 | [`3_agent-bricks/`](3_agent-bricks/) | `0` → `4` | Pass Genie Space id into notebook `3`; note **Supervisor name** |
 | 4 | [`4_apps/`](4_apps/) | `0` | Deploys chat app, prints URL |
 
-Every notebook exposes its configuration as **widgets** (catalog, schema, Genie
-space id, agent names, etc.), so you can re-point the workshop to any workspace
-without editing code. Each folder has its own `README.md` with the full parameter
-list.
+Every notebook exposes its configuration as **widgets** with documented defaults.
+The catalog defaults to **`marketing_campaign_analytics`** and the schema to
+**`marketing_campaign`** — adjust only if your workspace uses different names.
+Each notebook includes a parameter table explaining what every widget controls.
 
 > Update widget defaults to match your catalog, schema, and workspace before
 > running. Read the [Genie best practices](2_genie/docs/genie-best-practices.md)

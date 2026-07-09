@@ -25,7 +25,7 @@ Vector Search index and retriever function, `CAN_RUN` on Genie spaces, `CAN_USE`
 on SQL warehouses, `CAN_READ` on the Sales Dashboard, and UC `SELECT` privileges.
 
 **Parameters:** `APP_NAME`, `SUPERVISOR_NAME`, `SERVING_ENDPOINT_NAME` (blank =
-resolve from Supervisor name), `CATALOG_NAME`, `SCHEMA_NAME`,
+resolve from Supervisor name), `CATALOG_NAME` (default `marketing_campaign_analytics`), `SCHEMA_NAME`,
 `APP_SOURCE_PATH` (blank = sibling `chat_app/` folder)
 
 ## `chat_app/` — the app source
