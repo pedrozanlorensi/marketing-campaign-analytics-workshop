@@ -1,15 +1,15 @@
-# Apps — Marketing Campaign Insights Chat
+# Apps — Marketing Campaign Insights Custom Chat App
 
 Stage 4 of [Marketing Campaign Analytics](../README.md). Deploys a production
-**Databricks App** — a Streamlit chat UI — pointed at the **Supervisor Agent**
-endpoint from stage 3.
+**Custom Chat App** — a Streamlit UI on **Databricks Apps** — pointed at the
+**Supervisor Agent** endpoint from stage 3.
 
 <img src="../docs/figures/marketing_campaign_insights_app.png" alt="Marketing Campaign Insights Assistant — Databricks App" width="85%" />
 
 ## Prerequisites
 
-- Stage 3 complete — Supervisor Agent endpoint is live.
-- Permission to **deploy Databricks Apps** in the workspace.
+- Stages 1–3 complete — Supervisor Agent endpoint is live.
+- Permission to **deploy Databricks Apps**.
 
 ## Notebook
 
@@ -25,14 +25,14 @@ Vector Search index and retriever function, `CAN_RUN` on Genie spaces, `CAN_USE`
 on SQL warehouses, `CAN_READ` on the Sales Dashboard, and UC `SELECT` privileges.
 
 **Parameters:** `APP_NAME`, `SUPERVISOR_NAME`, `SERVING_ENDPOINT_NAME` (blank =
-resolve from Supervisor name), `CATALOG_NAME` (default `marketing_campaign_analytics`), `SCHEMA_NAME`,
+resolve from Supervisor name), `CATALOG_NAME` (default `workspace`), `SCHEMA_NAME`,
 `APP_SOURCE_PATH` (blank = sibling `chat_app/` folder)
 
 ## `chat_app/` — the app source
 
 | File | Purpose |
 | --- | --- |
-| `app.py` | Streamlit chat UI with sidebar branding |
+| `app.py` | Streamlit custom chat UI with sidebar branding |
 | `model_serving_utils.py` | Endpoint invocation + multi-agent response parsing |
 | `app.yaml` | App config (`SERVING_ENDPOINT` via `valueFrom`) |
 | `requirements.txt` | Dependencies |

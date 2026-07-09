@@ -48,9 +48,9 @@ space** from stage 2 — inside a **Supervisor Agent** on Databricks Agent Brick
 | 3 | [`3_CreateSupervisorAgent.ipynb`](3_CreateSupervisorAgent.ipynb) | Supervisor over the Vector Search index + Genie |
 | 4 | [`4_QuerySupervisorAgent.ipynb`](4_QuerySupervisorAgent.ipynb) | Query Supervisor endpoint |
 
-**Key parameters:** `CATALOG_NAME` (default `marketing_campaign_analytics`), `SCHEMA_NAME`, `CONTRACTS_SOURCE_PATH` (`./contracts`), `GENIE_SPACE_ID` (from stage 2), `VS_ENDPOINT_NAME`, `INDEX_NAME`, `SUPERVISOR_NAME`
+**Key parameters:** `CATALOG_NAME` (default `workspace`), `SCHEMA_NAME`, `CONTRACTS_SOURCE_PATH` (`./contracts`), `GENIE_SPACE_ID` (from stage 2), `VS_ENDPOINT_NAME`, `INDEX_NAME`, `SUPERVISOR_NAME`
 
-> **Next step:** deploy the chat app in [`4_apps/`](../4_apps/).
+> **Next step:** deploy the custom chat app in [`4_apps/`](../4_apps/).
 
 ## How the retriever reaches the agent
 

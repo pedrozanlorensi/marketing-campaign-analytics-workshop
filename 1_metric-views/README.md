@@ -26,7 +26,7 @@ Run in order:
 | 2 | [`2_QueryMetricView.ipynb`](2_QueryMetricView.ipynb) | Query with `MEASURE()` syntax |
 | 3 | [`3_CreateDashboard.ipynb`](3_CreateDashboard.ipynb) | Parameterize, create, and publish the AI/BI dashboard |
 
-**Parameters:** `CATALOG_NAME` (default `marketing_campaign_analytics`), `SCHEMA_NAME`, `WAREHOUSE_ID` (notebook `3`; use `auto` to resolve)
+**Parameters:** `CATALOG_NAME` (default `workspace`), `SCHEMA_NAME`, `WAREHOUSE_ID` (notebook `3`; use `auto` to resolve)
 
 ## Templates
 
