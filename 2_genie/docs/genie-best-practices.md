@@ -1,10 +1,10 @@
 # Genie Best Practices
 
-Guidance for building reliable, governed Genie spaces on top of your retail
+Guidance for building reliable, governed Genie spaces on top of your marketing campaign
 semantic layer. Use this alongside the numbered notebooks in [`2_genie/`](../).
 
 The principles below come from Databricks field experience building production
-Genie spaces. The running examples are tailored to this workshop's retail sales
+Genie spaces. The running examples are tailored to this workshop's marketing campaign sales
 domain (**Zanlorensi Athletics** — sales, campaigns, stores, products,
 salespeople) so you can apply them directly to the `sales_relationships` metric
 view.
@@ -38,7 +38,7 @@ Keep these rules of thumb in mind throughout:
 Genie is most accurate when a space represents **one business function**, not an
 entire warehouse.
 
-- **One business function per space** (e.g. "retail sales analytics").
+- **One business function per space** (e.g. "marketing campaign analytics").
 - **5–7 well-curated tables per space, or a single metric view** is the sweet
   spot. This workshop uses the `sales_relationships` **metric view**, which is an
   ideal fit — joins, measures, and synonyms are already defined.
@@ -47,7 +47,7 @@ entire warehouse.
 
 | ✅ Do — domain-focused | ❌ Don't — general purpose |
 | --- | --- |
-| **Purpose:** retail sales analytics for campaigns, stores, and products | Covers sales, HR, finance, operations, and support in one space |
+| **Purpose:** marketing campaign analytics for campaigns, stores, and products | Covers sales, HR, finance, operations, and support in one space |
 | **Scope:** the `sales_relationships` metric view (fact + dimensions) | 20+ tables across every department |
 | **Users:** sales analysts, campaign managers, store leaders | "One space to answer anything" |
 | Metric view or 5–7 focused tables | Attempts to be a general-purpose query tool |

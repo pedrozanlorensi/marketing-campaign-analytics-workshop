@@ -1,10 +1,10 @@
-# Apps — Retail Insights Chat
+# Apps — Marketing Campaign Insights Chat
 
-Stage 4 of [Retail Campaign Analytics](../README.md). Deploys a production
+Stage 4 of [Marketing Campaign Analytics](../README.md). Deploys a production
 **Databricks App** — a Streamlit chat UI — pointed at the **Supervisor Agent**
 endpoint from stage 3.
 
-<img src="../docs/figures/retail_insights_app.png" alt="Retail Insights Assistant — Databricks App" width="85%" />
+<img src="../docs/figures/marketing_campaign_insights_app.png" alt="Marketing Campaign Insights Assistant — Databricks App" width="85%" />
 
 ## Prerequisites
 

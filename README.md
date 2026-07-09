@@ -1,12 +1,12 @@
-# Retail Campaign Analytics
+# Marketing Campaign Analytics
 
 An end-to-end Databricks workshop for a fictional retailer, **Zanlorensi Athletics**,
 that turns raw sales data and contract documents into a single, governed,
 conversational analytics experience.
 
-<img src="docs/figures/retail_insights_app.png" alt="Retail Insights Assistant — Databricks App" width="85%" />
+<img src="docs/figures/marketing_campaign_insights_app.png" alt="Marketing Campaign Insights Assistant — Databricks App" width="85%" />
 
-The finished **Retail Insights Assistant** is a Databricks App (Streamlit chat UI)
+The finished **Marketing Campaign Insights Assistant** is a Databricks App (Streamlit chat UI)
 that routes questions to the right specialist agent — contracts (Vector Search
 retriever) or sales analytics (Genie) — behind a single conversational interface.
 
@@ -63,13 +63,13 @@ flowchart TB
 
 | Stage | Folder | What it delivers |
 | --- | --- | --- |
-| **1. Metric Views** | [`1_metric-views/`](1_metric-views/) | Retail star schema + governed **UC Metric View** (`sales_relationships`) + **AI/BI dashboard** |
+| **1. Metric Views** | [`1_metric-views/`](1_metric-views/) | Marketing campaign star schema + governed **UC Metric View** (`sales_relationships`) + **AI/BI dashboard** |
 | **2. Genie** | [`2_genie/`](2_genie/) | **Genie space**, API query validation, and [best practices](2_genie/docs/genie-best-practices.md) |
 | **3. Agent Bricks** | [`3_agent-bricks/`](3_agent-bricks/) | **Vector Search** index over contract PDFs (native Vector Search tool) + **Supervisor Agent** routing to Genie |
 | **4. Apps** | [`4_apps/`](4_apps/) | Production **Databricks App** (Streamlit chat UI) with automatic permission grants |
 
 ```
-Retail Campaign Analytics
+Marketing Campaign Analytics
 ├── docs/figures/          Screenshots and visual assets
 ├── 1_metric-views/        UC Business Semantics + data ingestion + dashboard
 ├── 2_genie/               Genie space, best practices

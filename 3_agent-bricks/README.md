@@ -1,6 +1,6 @@
 # Agent Bricks — Vector Search Retriever & Supervisor Agent
 
-Stage 3 of [Retail Campaign Analytics](../README.md). Builds a **Vector Search**
+Stage 3 of [Marketing Campaign Analytics](../README.md). Builds a **Vector Search**
 index over fictional contract PDFs and wraps it — together with the **Genie
 space** from stage 2 — inside a **Supervisor Agent** on Databricks Agent Bricks.
 
@@ -25,9 +25,9 @@ space** from stage 2 — inside a **Supervisor Agent** on Databricks Agent Brick
 | --- | --- | --- |
 | Volume | `<CATALOG>.<SCHEMA>.contracts` | Extracted contract PDFs |
 | Delta table | `<CATALOG>.<SCHEMA>.contract_chunks` | Chunked contract text (CDF enabled) |
-| Vector Search endpoint | `retail_campaign_vs` | Serves the index |
+| Vector Search endpoint | `marketing_campaign_vs` | Serves the index |
 | Vector Search index | `<CATALOG>.<SCHEMA>.contract_chunks_index` | Managed-embedding Delta Sync index |
-| Supervisor Agent | `Retail Insights Supervisor` | Routes the Vector Search index + Genie |
+| Supervisor Agent | `Marketing Campaign Insights Supervisor` | Routes the Vector Search index + Genie |
 
 ## Notebooks
 

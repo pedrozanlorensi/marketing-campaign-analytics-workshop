@@ -1,6 +1,6 @@
 # Metric Views — UC Business Semantics
 
-Stage 1 of [Retail Campaign Analytics](../README.md). Ingests the retail star
+Stage 1 of [Marketing Campaign Analytics](../README.md). Ingests the marketing campaign star
 schema, builds a governed **UC Metric View** (`sales_relationships`) with joins,
 dimensions, measures, and window measures, and publishes an **AI/BI dashboard**
 on top of it.
@@ -13,7 +13,7 @@ on top of it.
 | Volume | `datasets` | Flat folder holding the Kaggle CSV downloads |
 | Tables | 7 Delta tables | `fact_sales_normalized` + `dim_*` dimensions |
 | Metric view | `sales_relationships` | Governed semantic layer with `MEASURE()` syntax |
-| AI/BI dashboard | `Retail Campaign Analytics - Sales Dashboard` | Dashboard consuming the metric view |
+| AI/BI dashboard | `Marketing Campaign Analytics - Sales Dashboard` | Dashboard consuming the metric view |
 
 ## Notebooks
 

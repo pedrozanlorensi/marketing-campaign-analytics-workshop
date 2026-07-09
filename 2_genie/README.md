@@ -1,6 +1,6 @@
 # Genie — Natural Language Analytics
 
-Stage 2 of [Retail Campaign Analytics](../README.md). Deploys a **Genie space**
+Stage 2 of [Marketing Campaign Analytics](../README.md). Deploys a **Genie space**
 on top of the metric view from stage 1, then validates queries via the Genie API.
 
 Read [`docs/genie-best-practices.md`](docs/genie-best-practices.md) for curation,

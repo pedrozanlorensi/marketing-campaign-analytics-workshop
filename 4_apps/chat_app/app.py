@@ -7,7 +7,7 @@ from model_serving_utils import query_endpoint, is_endpoint_supported
 
 # Set page configuration (must be the first Streamlit command)
 st.set_page_config(
-    page_title="Retail Insights Assistant",
+    page_title="Marketing Campaign Insights Assistant",
     page_icon="figures/brand_logo.png",
     layout="centered"
 )
@@ -110,7 +110,7 @@ with st.sidebar:
     # Full-width (square) logo.
     st.image("figures/brand_logo.png", use_container_width=True)
     
-    st.markdown("<h2 style='text-align: center;'>Retail Insights Assistant</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'>Marketing Campaign Insights Assistant</h2>", unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("<p style='text-align: center;'><em>Chatbot powered by <strong>Databricks Apps</strong></em></p>", unsafe_allow_html=True)
 
