@@ -89,8 +89,8 @@ notebook widgets.
 | Step | Folder | Notebooks | Carry forward |
 | --- | --- | --- | --- |
 | 1 | [`1_metric-views/`](1_metric-views/) | `0` → `3` | Metric view `sales_relationships` + published dashboard |
-| 2 | [`2_genie/`](2_genie/) | `0` → `1` | **Genie Space id** (from notebook `0`) |
-| 3 | [`3_agent-bricks/`](3_agent-bricks/) | `0` → `4` | Pass Genie Space id into notebook `3`; note **Supervisor name** |
+| 2 | [`2_genie/`](2_genie/) | `0` → `1` | **Genie space title** (auto-resolves the id in stage 3) |
+| 3 | [`3_agent-bricks/`](3_agent-bricks/) | `0` → `4` | Genie space auto-found by title; note **Supervisor name** |
 | 4 | [`4_apps/`](4_apps/) | `0` | Deploys the custom chat app, prints URL |
 
 Every notebook exposes its configuration as **widgets** with documented defaults.

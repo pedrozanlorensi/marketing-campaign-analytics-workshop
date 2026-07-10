@@ -21,10 +21,10 @@ Run in order:
 | 0 | [`0_CreateGenieSpace.ipynb`](0_CreateGenieSpace.ipynb) | Deploy serialized Genie space from template |
 | 1 | [`1_QueryGenieSpace.ipynb`](1_QueryGenieSpace.ipynb) | Query the space via Genie Conversation API |
 
-**Parameters:** `CATALOG_NAME` (default `workspace`), `SCHEMA_NAME`, `WAREHOUSE_ID` (`auto`), `GENIE_SPACE_TITLE`, `GENIE_SPACE_ID`
+**Parameters:** `CATALOG_NAME` (default `workspace`), `SCHEMA_NAME`, `WAREHOUSE_ID` (`auto`), `GENIE_SPACE_TITLE`, `GENIE_SPACE_ID` (optional — auto-resolved from the title)
 
-> **Important:** Copy the **Genie Space id** printed by notebook `0` — stage 3
-> ([`3_agent-bricks`](../3_agent-bricks/)) needs it for the Supervisor Agent.
+> Stage 3 ([`3_agent-bricks`](../3_agent-bricks/)) auto-discovers this Genie space by its
+> title — no need to copy-paste the space id between notebooks.
 
 ## Templates
 

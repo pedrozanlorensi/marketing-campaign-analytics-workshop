@@ -14,7 +14,7 @@ space** from stage 2 — inside a **Supervisor Agent** on Databricks Agent Brick
 ## Prerequisites
 
 - Stages 1–2 complete (metric view + Genie space).
-- **Genie Space id** from [`2_genie/0_CreateGenieSpace.ipynb`](../2_genie/0_CreateGenieSpace.ipynb).
+- The **Genie space title** (`Marketing Campaign Analytics — Genie Space`) from [`2_genie/0_CreateGenieSpace.ipynb`](../2_genie/0_CreateGenieSpace.ipynb) — the Supervisor notebook auto-finds the space by title, no id copy-paste needed.
 - **Vector Search** and **Supervisor Agents** available (both work on Free Edition).
 - An **embedding model** endpoint — `databricks-gte-large-en` is used by default.
 - Import the repo folder `3_agent-bricks/` to your workspace so `./contracts` sits next to notebook `0` before running it.
@@ -48,7 +48,7 @@ space** from stage 2 — inside a **Supervisor Agent** on Databricks Agent Brick
 | 3 | [`3_CreateSupervisorAgent.ipynb`](3_CreateSupervisorAgent.ipynb) | Supervisor over the Vector Search index + Genie |
 | 4 | [`4_QuerySupervisorAgent.ipynb`](4_QuerySupervisorAgent.ipynb) | Query Supervisor endpoint |
 
-**Key parameters:** `CATALOG_NAME` (default `workspace`), `SCHEMA_NAME`, `CONTRACTS_SOURCE_PATH` (`./contracts`), `GENIE_SPACE_ID` (from stage 2), `VS_ENDPOINT_NAME`, `INDEX_NAME`, `SUPERVISOR_NAME`
+**Key parameters:** `CATALOG_NAME` (default `workspace`), `SCHEMA_NAME`, `CONTRACTS_SOURCE_PATH` (`./contracts`), `GENIE_SPACE_TITLE` (auto-resolves the Genie space id), `VS_ENDPOINT_NAME`, `INDEX_NAME`, `SUPERVISOR_NAME`
 
 > **Next step:** deploy the custom chat app in [`4_apps/`](../4_apps/).
 
