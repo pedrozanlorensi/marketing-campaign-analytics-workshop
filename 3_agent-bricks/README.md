@@ -33,7 +33,7 @@ space** from stage 2 — inside a **Supervisor Agent** on Databricks Agent Brick
 | Resource | Name (default) | Description |
 | --- | --- | --- |
 | Volume | `<CATALOG>.<SCHEMA>.contracts` | Extracted contract PDFs |
-| Delta table | `<CATALOG>.<SCHEMA>.contract_chunks` | Chunked contract text (CDF enabled) |
+| Delta table | `<CATALOG>.<SCHEMA>.contract_chunks` | Search-ready contract chunks from `ai_prep_search` (CDF enabled) |
 | Vector Search endpoint | `marketing_campaign_vs` | Serves the index |
 | Vector Search index | `<CATALOG>.<SCHEMA>.contract_chunks_index` | Managed-embedding Delta Sync index |
 | Supervisor Agent | `Marketing Campaign Insights Supervisor` | Routes the Vector Search index + Genie |
@@ -43,7 +43,7 @@ space** from stage 2 — inside a **Supervisor Agent** on Databricks Agent Brick
 | # | Notebook | Purpose |
 | --- | --- | --- |
 | 0 | [`0_ImportContractsToVolume.ipynb`](0_ImportContractsToVolume.ipynb) | Copy `contracts/*.pdf` → Unity Catalog volume |
-| 1 | [`1_CreateVectorSearchIndex.ipynb`](1_CreateVectorSearchIndex.ipynb) | PDFs → chunks → Delta → Vector Search index |
+| 1 | [`1_CreateVectorSearchIndex.ipynb`](1_CreateVectorSearchIndex.ipynb) | `ai_parse_document` + `ai_prep_search` → chunks → Delta → Vector Search index |
 | 2 | [`2_QueryVectorSearchIndex.ipynb`](2_QueryVectorSearchIndex.ipynb) | Similarity-search test |
 | 3 | [`3_CreateSupervisorAgent.ipynb`](3_CreateSupervisorAgent.ipynb) | Supervisor over the Vector Search index + Genie |
 | 4 | [`4_QuerySupervisorAgent.ipynb`](4_QuerySupervisorAgent.ipynb) | Query Supervisor endpoint |
@@ -56,9 +56,10 @@ space** from stage 2 — inside a **Supervisor Agent** on Databricks Agent Brick
 
 ```
 contract PDFs (volume)
-   └─ chunk → Delta table (CDF)
-        └─ Vector Search Delta Sync index  (managed gte-large-en embeddings)
-             └─ Supervisor Agent tool (tool_type = "vector_search_index")
+   └─ ai_parse_document → ai_prep_search  (OCR + RAG-ready chunks)
+        └─ Delta table (CDF)
+             └─ Vector Search Delta Sync index  (managed gte-large-en embeddings on chunk_to_embed)
+                  └─ Supervisor Agent tool (tool_type = "vector_search_index")
 ```
 
 ## Directory structure
