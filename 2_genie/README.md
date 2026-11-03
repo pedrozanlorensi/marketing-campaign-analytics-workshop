@@ -35,4 +35,4 @@ Run in order:
 ## Next step
 
 Continue to [`3_agent-bricks/`](../3_agent-bricks/) to add contract retrieval and
-a Supervisor Agent on top of this Genie space.
+an Agent Bricks CLI agent that uses this Genie space as a tool.

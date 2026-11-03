@@ -7,7 +7,7 @@ command: [
 env:
   - name: STREAMLIT_BROWSER_GATHER_USAGE_STATS
     value: "false"
-  # Bound at deploy time to the Supervisor Agent serving endpoint via the
-  # app resource named "agent-endpoint" (see notebook 0_DeployChatApp).
-  - name: SERVING_ENDPOINT
-    valueFrom: agent-endpoint
+  # Agent Bricks agent app deployed from 3_agent-bricks/agent (`agentbricks deploy`).
+  # 4_apps/0_DeployChatApp grants this app's service principal CAN_USE on it.
+  - name: AGENT_APP_NAME
+    value: agent-bricks-marketing-agent

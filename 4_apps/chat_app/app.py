@@ -1,9 +1,10 @@
 import logging
 import os
 import time
+import uuid
 import streamlit as st
 from databricks.sdk import WorkspaceClient
-from model_serving_utils import query_endpoint, is_endpoint_supported
+from agent_client import query_agent
 
 # Set page configuration (must be the first Streamlit command)
 st.set_page_config(
@@ -16,24 +17,13 @@ st.set_page_config(
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Ensure environment variable is set correctly
-SERVING_ENDPOINT = os.getenv('SERVING_ENDPOINT')
-assert SERVING_ENDPOINT, \
-    ("Unable to determine serving endpoint to use for chatbot app. If developing locally, "
-     "set the SERVING_ENDPOINT environment variable to the name of your serving endpoint. If "
-     "deploying to a Databricks app, include a serving endpoint resource named "
-     "'serving_endpoint' with CAN_QUERY permissions, as described in "
-     "https://docs.databricks.com/aws/en/generative-ai/agent-framework/chat-app#deploy-the-databricks-app")
-
-# Check if the endpoint is supported
-endpoint_supported = is_endpoint_supported(SERVING_ENDPOINT)
-
-# Log a warning if endpoint is not standard, but don't block usage
-if not endpoint_supported:
-    logger.warning(
-        f"Endpoint '{SERVING_ENDPOINT}' has a non-standard task type. "
-        "The app will attempt to use it anyway."
-    )
+# The Agent Bricks agent app to call (set in app.yaml; `agent-bricks-` + deployment_name in
+# 3_agent-bricks/agent/agent.toml).
+AGENT_APP_NAME = os.getenv("AGENT_APP_NAME")
+assert AGENT_APP_NAME, (
+    "Set the AGENT_APP_NAME environment variable (app.yaml) to the name of the agent app "
+    "deployed with `agentbricks deploy`, for example agent-bricks-marketing-agent."
+)
 
 def get_user_info():
     headers = st.context.headers
@@ -132,6 +122,9 @@ with st.sidebar:
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
+# One agent session per browser chat: the agent keeps the conversation history server-side.
+if "agent_session_id" not in st.session_state:
+    st.session_state.agent_session_id = str(uuid.uuid4())
 
 # Display all messages from history
 for message in st.session_state.messages:
@@ -160,11 +153,12 @@ if prompt := st.chat_input("Ask me anything!"):
                 time.sleep(1)
                 st.write("Formulating the final response...")
                 
-                # Query the endpoint (limit to last 10 messages to manage context length)
-                assistant_response = query_endpoint(
-                    endpoint_name=SERVING_ENDPOINT,
-                    messages=st.session_state.messages[-10:],
-                )["content"]
+                # Send only the new turn; the agent's session store has the history.
+                assistant_response = query_agent(
+                    agent_app_name=AGENT_APP_NAME,
+                    session_id=st.session_state.agent_session_id,
+                    user_message=prompt,
+                )
         
         # Replace loading with response
         render_message(assistant_response)
