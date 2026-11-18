@@ -15,6 +15,7 @@ fictional (four generated contracts); no customer data is used.
 The full blueprint (specs for every component, and how to adapt it to your own marketing analytics
 project) is in [`docs/SPECS.md`](docs/SPECS.md). The output of a full measured run against the live workspace (every stage, masked) is in
 [`docs/RUN_LOG.md`](docs/RUN_LOG.md).
+The business deck for the CMO and the marketing analytics lead is [`docs/deck.pdf`](docs/deck.pdf).
 
 <img src="docs/figures/marketing_campaign_insights_app.png" alt="Chat app" width="80%" />
 
