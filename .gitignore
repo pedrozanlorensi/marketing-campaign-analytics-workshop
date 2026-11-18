@@ -19,3 +19,11 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# Agent Bricks local state and caches
+.agentbricks/
+app.agentbricksdev.yaml
+uv.lock
+.claude/
+.pytest_cache/
+**/mlruns/
