@@ -1,57 +1,248 @@
-/* Main container styling */
-.main .block-container {
-    padding-top: 1rem;
-    padding-bottom: 2rem;
-    max-width: 800px;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --brand-orange: #F7801F;
+    --brand-red: #E0283C;
+    --brand-gradient: linear-gradient(135deg, #F7801F 0%, #EA4E1B 50%, #E0283C 100%);
+    --ink: #1D2129;
+    --muted: #6B7280;
+    --line: #E7E9ED;
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
+    --shadow-md: 0 4px 16px rgba(16, 24, 40, 0.08);
 }
 
-/* Sidebar styling */
-[data-testid="stSidebar"] {
-    background-color: #f8f9fa;
+/* ---------- Layout ---------- */
+[data-testid="stMainBlockContainer"] {
+    max-width: 860px;
+    padding-top: 2.5rem;
+    padding-bottom: 6rem;
 }
-
-/* Center the logo in sidebar */
-[data-testid="stSidebar"] [data-testid="stImage"] {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+header[data-testid="stHeader"] {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
 }
+h1, h2, h3 { letter-spacing: -0.02em; }
 
-/* Sidebar title styling */
-[data-testid="stSidebar"] h1 {
-    font-size: 1.5rem;
+/* ---------- Sidebar ---------- */
+[data-testid="stSidebarContent"] { padding-top: 0.5rem; }
+[data-testid="stSidebar"] [data-testid="stFullScreenFrame"]:has([data-testid="stImage"]) {
+    display: flex;
+    justify-content: center;
+}
+[data-testid="stSidebar"] [data-testid="stImageContainer"] {
+    width: 140px;
+    max-width: 140px;
+    margin: 0 auto;
+}
+[data-testid="stSidebar"] [data-testid="stImageContainer"] img { width: 100%; height: auto; }
+
+.sb-title {
     text-align: center;
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0.25rem 0 0.15rem 0;
+}
+.sb-sub {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
     margin-bottom: 0.5rem;
 }
-
-[data-testid="stSidebar"] .stMarkdown {
+.sb-section {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 1rem 0 0.35rem 0.1rem;
+}
+.sb-user {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: #FFFFFF;
+    font-size: 0.8rem;
+    color: var(--muted);
+    overflow: hidden;
+}
+.sb-user b { color: var(--ink); font-weight: 600; display: block; }
+.sb-avatar {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--brand-gradient);
+    color: #FFFFFF;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sb-user-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sb-footer {
     text-align: center;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 1.25rem;
 }
 
-/* Custom scrollbar styling - larger and more visible */
-::-webkit-scrollbar {
-    width: 16px;
-    height: 16px;
+/* ---------- Hero / page headers ---------- */
+.hero { text-align: center; padding: 2.5rem 0 1.5rem 0; }
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    background: #FFF1EA;
+    color: #C2410C;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid #FFDCCB;
+}
+.hero h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 1rem 0 0.6rem 0;
+    padding: 0;
+}
+.gradient-text {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.hero p { color: var(--muted); font-size: 1.02rem; max-width: 560px; margin: 0 auto; }
+.page-head h2 { font-size: 1.75rem; font-weight: 800; margin: 0 0 0.25rem 0; padding: 0; }
+.page-head p { color: var(--muted); margin: 0 0 1rem 0; }
+.section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 1.5rem 0 0.5rem 0;
 }
 
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
+/* ---------- Buttons ---------- */
+[data-testid="stBaseButton-primary"],
+[data-testid="stBaseButton-primaryFormSubmit"] {
+    background: var(--brand-gradient);
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(234, 78, 27, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+[data-testid="stBaseButton-primary"]:hover,
+[data-testid="stBaseButton-primaryFormSubmit"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(234, 78, 27, 0.3);
+}
+[data-testid="stBaseButton-secondary"] {
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
-    border: 3px solid #f1f1f1;
+/* Suggestion cards on the empty chat screen */
+.st-key-suggestions [data-testid="stBaseButton-secondary"] {
+    justify-content: flex-start;
+    text-align: left;
+    min-height: 4.25rem;
+    padding: 0.85rem 1rem;
+    background: #FFFFFF;
+    box-shadow: var(--shadow-sm);
+}
+.st-key-suggestions [data-testid="stBaseButton-secondary"] p { font-size: 0.9rem; }
+.st-key-suggestions [data-testid="stBaseButton-secondary"]:hover {
+    border-color: #F5A27A;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
+/* ---------- Cards (forms) ---------- */
+[data-testid="stForm"] {
+    background: #FFFFFF;
+    box-shadow: var(--shadow-sm);
+    padding: 1.25rem 1.25rem 0.5rem 1.25rem;
 }
 
-/* Firefox scrollbar */
-* {
-    scrollbar-width: auto;
-    scrollbar-color: #888 #f1f1f1;
+/* ---------- Chat ---------- */
+[data-testid="stChatMessage"] {
+    background: transparent;
+    padding: 0.75rem 0;
+    gap: 0.85rem;
+}
+/* User turns: right-aligned bubble */
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+    flex-direction: row-reverse;
+    align-items: center;
+}
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] {
+    flex: 0 1 auto;
+    max-width: 80%;
+    background: #FFF1EA;
+    border: 1px solid #FFDCCB;
+    border-radius: 1.1rem 1.1rem 0.3rem 1.1rem;
+    padding: 0.6rem 1rem;
+    margin-left: auto;
+    margin-right: 0;
+}
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stMarkdownContainer"] {
+    margin-bottom: 0 !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] p {
+    margin-bottom: 0;
+}
+[data-testid="stChatMessageAvatarUser"],
+[data-testid="stChatMessageAvatarAssistant"],
+[data-testid="stChatMessageAvatarCustom"] {
+    border-radius: 50%;
+}
+[data-testid="stChatMessageAvatarAssistant"] {
+    background: var(--brand-gradient);
+    color: #FFFFFF;
+}
+[data-testid="stChatMessageAvatarUser"] {
+    background: #1D2129;
+    color: #FFFFFF;
 }
 
+/* Chat input: floating rounded bar */
+[data-testid="stBottomBlockContainer"] {
+    max-width: 860px;
+    padding-bottom: 1.5rem;
+}
+[data-testid="stChatInput"] {
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+}
+[data-testid="stChatInputSubmitButton"] {
+    margin-right: 0.25rem;
+    background: var(--brand-gradient);
+    color: #FFFFFF;
+    border-radius: 0.6rem;
+}
+[data-testid="stChatInputSubmitButton"]:disabled { opacity: 0.35; }
+
+/* ---------- Tabs ---------- */
+[data-testid="stTabs"] [data-baseweb="tab-list"] { gap: 0.25rem; }
+[data-testid="stTabs"] button[data-baseweb="tab"] {
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.6rem 0.6rem 0 0;
+}
+[data-testid="stTabs"] button[data-baseweb="tab"] p { font-weight: 600; }
+
+/* ---------- Status / alerts ---------- */
+[data-testid="stAlert"] { border-radius: 0.75rem; }
+[data-testid="stExpander"] details { border-radius: 0.75rem; }
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D5D8DE; border-radius: 10px; border: 2px solid #FFFFFF; }
+::-webkit-scrollbar-thumb:hover { background: #B8BCC5; }
