@@ -84,7 +84,7 @@ def _get_ws():
 def get_sidebar_links():
     """Build the sidebar quick-links at runtime so the demo is portable: nothing
     is hardcoded to a specific workspace host / org / dashboard id. The host and
-    org are read from the app's own credentials, and the Sales Dashboard id is
+    org are read from the app's own credentials, and the dashboard id is
     resolved from an env var (DASHBOARD_ID) or by display name (DASHBOARD_NAME)."""
     w = _get_ws()
     host = w.config.host or ""
@@ -96,10 +96,7 @@ def get_sidebar_links():
     except Exception:
         org = os.getenv("DATABRICKS_WORKSPACE_ID")
 
-    # Databricks One is the "Insights Portal" landing page.
-    portal_url = f"{host}/one" if host else None
-
-    # Resolve the published Sales Dashboard link.
+    # "Insights Portal" opens the published dashboard (not Databricks One).
     dashboard_url = None
     dash_id = os.getenv("DASHBOARD_ID")
     dash_name = os.getenv("DASHBOARD_NAME", "Marketing Campaign Analytics - Sales Dashboard")
@@ -116,10 +113,10 @@ def get_sidebar_links():
     except Exception as e:
         logger.warning("Could not resolve Sales Dashboard link: %s", e)
 
-    return portal_url, dashboard_url
+    return dashboard_url
 
 
-INSIGHTS_PORTAL_URL, SALES_DASHBOARD_URL = get_sidebar_links()
+INSIGHTS_PORTAL_URL = get_sidebar_links()
 
 PAGES = {"Assistant": ":material/forum: Assistant", "Add data": ":material/add_circle: Add data"}
 
@@ -160,14 +157,10 @@ with st.sidebar:
                   on_click=new_conversation,
                   disabled=not st.session_state.get("messages"))
 
-    if INSIGHTS_PORTAL_URL or SALES_DASHBOARD_URL:
+    if INSIGHTS_PORTAL_URL:
         st.markdown("<div class='sb-section'>Explore</div>", unsafe_allow_html=True)
-        if SALES_DASHBOARD_URL:
-            st.link_button("Sales Dashboard", SALES_DASHBOARD_URL, icon=":material/bar_chart:",
-                           use_container_width=True)
-        if INSIGHTS_PORTAL_URL:
-            st.link_button("Insights Portal", INSIGHTS_PORTAL_URL, icon=":material/space_dashboard:",
-                           use_container_width=True)
+        st.link_button("Insights Portal", INSIGHTS_PORTAL_URL, icon=":material/space_dashboard:",
+                       use_container_width=True)
 
     st.markdown("<div class='sb-section'>Signed in</div>" + _user_card()
                 + "<div class='sb-footer'>Built on Databricks Apps · Agent Bricks · Lakebase</div>",

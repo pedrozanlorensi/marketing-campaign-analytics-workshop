@@ -40,13 +40,16 @@ dbutils.library.restartPython()
 # MAGIC | `APP_NAME` | `marketing-app` | Databricks App name (lowercase, hyphens). |
 # MAGIC | `AGENT_APP_NAME` | `agent-bricks-marketing-agent` | Agent app from stage 3. Must match `AGENT_APP_NAME` in `chat_app/app.yaml`. |
 # MAGIC | `APP_SOURCE_PATH` | `./chat_app` | Folder with `app.py`, `app.yaml`, and `requirements.txt`. |
+# MAGIC | `DASHBOARD_NAME` | `Marketing Campaign Analytics - Sales Dashboard` | Dashboard the sidebar's Insights Portal button opens. |
 
 # COMMAND ----------
 
 dbutils.widgets.text("APP_NAME", "marketing-app", "APP_NAME — Databricks App name (lowercase, hyphens)")
 dbutils.widgets.text("AGENT_APP_NAME", "agent-bricks-marketing-agent", "AGENT_APP_NAME — agent app from agentbricks deploy")
 dbutils.widgets.text("APP_SOURCE_PATH", "./chat_app", "App source folder (blank = ./chat_app next to this notebook)")
+dbutils.widgets.text("DASHBOARD_NAME", "Marketing Campaign Analytics - Sales Dashboard", "DASHBOARD_NAME — dashboard the Insights Portal button opens")
 
+DASHBOARD_NAME = dbutils.widgets.get("DASHBOARD_NAME")
 APP_NAME = dbutils.widgets.get("APP_NAME")
 AGENT_APP_NAME = dbutils.widgets.get("AGENT_APP_NAME")
 APP_SOURCE_PATH = dbutils.widgets.get("APP_SOURCE_PATH")
@@ -115,9 +118,10 @@ print("App status:", app.app_status.state if app.app_status else None)
 # MAGIC %md
 # MAGIC ### Grant the App's Service Principal Access to the Agent
 # MAGIC
-# MAGIC The chat app only calls the agent, so its service principal needs one grant: `CAN_USE` on
-# MAGIC the agent app. Everything behind the agent (Genie, the contract search function, the index)
-# MAGIC is accessed by the agent's own service principal.
+# MAGIC The chat app only calls the agent, so its service principal needs `CAN_USE` on the agent
+# MAGIC app, plus `CAN_READ` on the dashboard its sidebar links to. Everything behind the agent
+# MAGIC (Genie, the contract search function, the index) is accessed by the agent's own service
+# MAGIC principal.
 
 # COMMAND ----------
 
@@ -130,6 +134,18 @@ w.apps.update_permissions(
         service_principal_name=SP, permission_level=AppPermissionLevel.CAN_USE)],
 )
 print(f"CAN_USE on {AGENT_APP_NAME} granted to {SP}")
+
+# The sidebar's "Insights Portal" button links to the published dashboard. The app finds it by
+# display name with its own service principal, so the principal needs to see the dashboard.
+dashboard = next((d for d in w.lakeview.list() if d.display_name == DASHBOARD_NAME), None)
+if dashboard:
+    w.api_client.do("PATCH", f"/api/2.0/permissions/dashboards/{dashboard.dashboard_id}",
+                    body={"access_control_list": [{"service_principal_name": SP,
+                                                   "permission_level": "CAN_READ"}]})
+    print(f"CAN_READ on dashboard '{DASHBOARD_NAME}' granted to {SP}")
+else:
+    print(f"No dashboard named '{DASHBOARD_NAME}'; the app will hide the Insights Portal button. "
+          "Run 1_metric-views/3_CreateDashboard, then re-run this cell.")
 
 # COMMAND ----------
 

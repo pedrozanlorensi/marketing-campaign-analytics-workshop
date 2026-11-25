@@ -109,7 +109,7 @@ returns the top 5 chunks and their file names.
 
 | Identity | Grants |
 | --- | --- |
-| Chat app SP | `CAN_USE` on the agent; Postgres `SELECT, INSERT` on `app_data` and column-level `SELECT` on `source_data` (business columns, not the connector's Drive metadata). No Unity Catalog grants |
+| Chat app SP | `CAN_USE` on the agent; `CAN_READ` on the dashboard its sidebar links to; Postgres `SELECT, INSERT` on `app_data` and column-level `SELECT` on `source_data` (business columns, not the connector's Drive metadata). No Unity Catalog grants |
 | Agent SP | `USE CATALOG`, `USE SCHEMA`, `SELECT` on the schema, `EXECUTE` on `search_contracts`, `CAN_RUN` on Genie, `CAN_USE` on the warehouse and Vector Search endpoint, `CAN_QUERY` on the embedding model |
 
 The grants live in `3_agent-bricks/4_GrantAgentAccess` and `5_lakebase/0_SetupLakebase`.
