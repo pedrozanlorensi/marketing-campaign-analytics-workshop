@@ -1,0 +1,22 @@
+# App theme. Colors follow the brand logo (orange-to-red gradient on white).
+[theme]
+base = "light"
+primaryColor = "#EA4E1B"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F6F7F9"
+textColor = "#1D2129"
+linkColor = "#D9381E"
+borderColor = "#E7E9ED"
+showWidgetBorder = true
+showSidebarBorder = true
+baseRadius = "0.75rem"
+# Inter is loaded in style.css; the system font is the fallback.
+font = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+headingFont = "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+
+[theme.sidebar]
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F1F2F5"
+
+[client]
+toolbarMode = "minimal"
